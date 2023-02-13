@@ -9,7 +9,7 @@ export default function ChatLayout({
   return (
     <>
       <SideBar />
-      <section className="bg-neutral-50 flex-1 md:my-4 md:rounded-l-3xl">
+      <section className="flex-1 bg-white md:my-4 md:rounded-l-3xl">
         {children}
       </section>
     </>

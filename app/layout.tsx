@@ -15,7 +15,7 @@ export default async function RootLayout({
       <head />
       <body>
         <SessionProvider session={session}>
-          <main className="bg-neutral-200 flex h-screen">
+          <main className="flex h-screen bg-neutral-100">
             {!session ? <Login /> : <>{children}</>}
           </main>
         </SessionProvider>
