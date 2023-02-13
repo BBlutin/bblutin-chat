@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { PlusIcon, ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, QueueListIcon } from "@heroicons/react/24/outline";
+import SignOut from "../components/SignOut";
+import Hello from "../components/Hello";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -12,17 +15,15 @@ const HomePage = () => {
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mt-2 text-center mb-10 lg:mb-16 px-4 md:px-0 font-mono">
         Que puis-je faire pour vous aujourd’hui ?
       </h1>
-      <div className="bg-neutral-800 bg-opacity-40 px-4 py-2 rounded-full backdrop-blur-sm absolute top-[25vh] right-4 md:right-10 xl:right-60">
-        <span className="font-medium text-neutral-50">Hey Thomas 👋</span>
-      </div>
-      <div className="absolute w-full bottom-6 lg:bottom-12 left-0 p-4 px-12 flex items-center justify-between">
-        <div className="w-6 lg:w-8"></div>
+      <Hello />
+      <div className="absolute w-full bottom-6 lg:bottom-12 lg:px-[30%] left-0 p-4 px-12 flex items-center justify-between">
+        <SignOut />
         <button className="rounded-2xl border-neutral-300 border-2 p-2 animate-bounce">
           <PlusIcon className="h-10 w-10" />
         </button>
-        <button>
-          <ArrowLeftOnRectangleIcon className="w-6 h-6 lg:h-8 lg:w-8 fill-neutral-400" />
-        </button>
+        <Link href="/chat">
+          <QueueListIcon className="w-6 h-6 lg:h-8 lg:w-8  stroke-neutral-400" />
+        </Link>
       </div>
     </div>
   );

@@ -1,15 +1,24 @@
+import { getServerSession } from "next-auth";
+import Login from "../components/Login";
+import SessionProvider from "../components/SessionProvider";
 import "../styles/globals.css";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+
   return (
     <html>
       <head />
       <body>
-        <main className="bg-neutral-200 flex h-screen">{children}</main>
+        <SessionProvider session={session}>
+          <main className="bg-neutral-200 flex h-screen">
+            {!session ? <Login /> : <>{children}</>}
+          </main>
+        </SessionProvider>
       </body>
     </html>
   );
