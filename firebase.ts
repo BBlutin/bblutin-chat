@@ -1,5 +1,5 @@
-import { FirebaseApp, getApp, getApps, initializeApp } from "firebase/app";
-import { Firestore, getFirestore } from "firebase/firestore";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -10,10 +10,8 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
 };
 
-const app: FirebaseApp = getApps().length
-  ? getApp()
-  : initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
-const db: Firestore = getFirestore(app);
+const db = getFirestore(app);
 
-export { db, app };
+export { db };
