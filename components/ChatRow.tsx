@@ -1,6 +1,6 @@
 import { ChatBubbleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
-import { collection, deleteDoc, doc } from "firebase/firestore";
+import { collection, deleteDoc, doc, orderBy, query } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -19,7 +19,10 @@ const ChatRow = ({ id }: ChatProps) => {
   const { data: session } = useSession();
 
   const [messages] = useCollection(
-    collection(db, "users", session?.user?.email!, "chats", id, "messages")
+    query(
+      collection(db, "users", session?.user?.email!, "chats", id, "messages"),
+      orderBy("createdAt", "asc")
+    )
   );
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const ChatRow = ({ id }: ChatProps) => {
         ) : (
           <ChatBubbleLeftIcon className="w-4 h-4 mt-[3px] mr-2 stroke-neutral-600" />
         )}
-        <p className="flex-1 text-sm text-neutral-700">
+        <p className="flex-1 text-sm text-neutral-700 truncate">
           {messages?.docs[messages?.docs.length - 1]?.data().text ||
             "Nouvelle discussion"}
         </p>

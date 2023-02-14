@@ -3,7 +3,11 @@
 import { useSession } from "next-auth/react";
 import NewChat from "./NewChat";
 import Image from "next/image";
-import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import {
+  ArrowLeftOnRectangleIcon,
+  Cog6ToothIcon,
+} from "@heroicons/react/24/outline";
 import { signOut } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, orderBy, query } from "firebase/firestore";
@@ -21,13 +25,16 @@ const SideBar = () => {
   );
 
   return (
-    <div className="py-6 px-4 flex-col justify-between h-screen hidden md:flex min-w-[15rem] lg:min-w-[20rem] 2xl:min-w-[25rem]">
+    <div className="py-6 px-4 flex-col justify-between h-screen hidden md:flex w-[15rem] lg:w-[20rem] 2xl:w-[25rem]">
       <div className="flex flex-col">
         <div className="flex items-center">
           <div className="h-[50px] w-[50px] rounded-full relative overflow-hidden mr-4">
             {session && (
               <Image
-                src={session.user?.image!}
+                src={
+                  session.user?.image ||
+                  `https://ui-avatars.com/api/?background=a3a3a3&name=${session?.user?.name}`
+                }
                 alt=""
                 fill
                 className="object-cover"
@@ -42,7 +49,7 @@ const SideBar = () => {
           <div className="mt-6 lg:mt-8">
             <NewChat />
             <h2 className="mt-6 font-semibold text-neutral-500 lg:mt-8">
-              Chat récents
+              Chats récents
             </h2>
             <div className="flex flex-col mt-6 space-y-8">
               {chats?.docs.map((chat) => (
@@ -52,13 +59,19 @@ const SideBar = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center px-2 pb-6 space-x-12">
+      <div className="flex items-center px-2 pb-6 space-x-8">
         <button
           className="p-2 border rounded-full border-neutral-300"
           onClick={() => signOut()}
         >
-          <ArrowLeftOnRectangleIcon className="w-7 h-7 fill-neutral-800" />
+          <ArrowLeftOnRectangleIcon className="w-7 h-7 stroke-neutral-800" />
         </button>
+        <Link
+          href="/settings"
+          className="p-2 border rounded-full border-neutral-300"
+        >
+          <Cog6ToothIcon className="w-7 h-7 stroke-neutral-800" />
+        </Link>
       </div>
     </div>
   );
