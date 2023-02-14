@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { PlusIcon, QueueListIcon } from "@heroicons/react/24/outline";
