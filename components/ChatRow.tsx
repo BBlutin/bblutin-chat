@@ -43,7 +43,7 @@ const ChatRow = ({ id }: ChatProps) => {
         ) : (
           <ChatBubbleLeftIcon className="w-4 h-4 mt-[3px] mr-2 stroke-neutral-600" />
         )}
-        <p className="flex-1 text-sm text-neutral-700 truncate">
+        <p className="flex-1 text-sm truncate text-neutral-700">
           {messages?.docs[messages?.docs.length - 1]?.data().text ||
             "Nouvelle discussion"}
         </p>

@@ -50,7 +50,7 @@ const Chat = ({ chatId, apiResponse }: Props) => {
           )}
         </>
       ))}
-      {messages?.docs[messages?.docs.length - 1].data().user._id !=
+      {messages?.docs[messages?.docs.length - 1]?.data().user._id !=
         "BB.Chat" && (
         <div className="text-sm font-medium text-neutral-800">
           <p>{apiResponse}</p>

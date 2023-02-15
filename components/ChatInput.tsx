@@ -8,8 +8,6 @@ import {
   getDocs,
   query,
   orderBy,
-  updateDoc,
-  doc,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
