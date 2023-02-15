@@ -15,7 +15,7 @@ const handler = async (req: NextRequest): Promise<Response> => {
   const botName: string = "BB.chat";
   const userName: string = session.user.name;
 
-  const initialPrompt = `Je suis une IA assistant un utilisateur, je m'appelle ${botName} et mon développeur est Thomas Fritschy. J'utilise le modèle GPT-3 afin de répondre sous forme de discussion aux questions de l'utilisateur qui s'appel ${userName}. Je répond au format systématiquement au format markdown. Si je répond du code je l'encadre dans une balise de code markdown en spécifiant le langage associé après la balise de départ.\n\n${botName}: Bonjour! Je suis à votre disposition pour répondre à vos questions.${promptPrefix}\n\n${userName}: ${prompt}\n\n${botName}:`;
+  const initialPrompt = `Je suis une IA assistant un utilisateur, je m'appelle ${botName} et mon développeur est Thomas Fritschy. J'utilise le modèle GPT-3 afin de répondre sous forme de discussion aux questions de l'utilisateur qui s'appel ${userName}. Je répond au format systématiquement au format markdown. Si je répond du code je l'encadre dans une balise de code markdown en spécifiant le langage associé après la balise de départ. Si je répond une liste, je la met également au format markdown, et si elle possède des étapes je les numérotes. Par défaut, je répond en utilisant le système international d'unités.\n\n${botName}: Bonjour! Je suis à votre disposition pour répondre à vos questions.${promptPrefix}\n\n${userName}: ${prompt}\n\n${botName}:`;
 
   console.log(initialPrompt);
 
