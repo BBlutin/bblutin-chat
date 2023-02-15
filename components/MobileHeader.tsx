@@ -5,7 +5,7 @@ import {
   ArrowLeftOnRectangleIcon,
   Bars3Icon,
   Cog6ToothIcon,
-  XMarkIcon,
+  ChevronLeftIcon,
 } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
@@ -19,7 +19,7 @@ import Link from "next/link";
 
 const MobileHeader = () => {
   const { data: session } = useSession();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [chats, loading, error] = useCollection(
     session &&
@@ -39,12 +39,17 @@ const MobileHeader = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between w-full h-16 px-6 mb-20 md:hidden">
-        <button onClick={openModal}>
-          <Bars3Icon className="w-8 h-8" />
+      <div className="flex items-center justify-between w-full h-16 px-6 md:hidden">
+        <button
+          className="p-1 border rounded-full outline-none border-neutral-300"
+          onClick={openModal}
+        >
+          <Bars3Icon className="w-7 h-7" />
         </button>
-        <h1 className="font-mono text-2xl font-medium">BB.Chat</h1>
-        <div className="w-8"></div>
+        <h1 className="font-mono text-2xl font-semibold">BB.Chat</h1>
+        <div className="p-1 ">
+          <div className="w-8"></div>
+        </div>
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -60,10 +65,12 @@ const MobileHeader = () => {
                 leaveTo="-translate-x-full"
               >
                 <Dialog.Panel className="flex flex-col w-full h-full p-6 overflow-hidden text-left align-middle transition-all transform shadow bg-neutral-50">
-                  <XMarkIcon
+                  <button
+                    className="self-start p-1 mb-4 border rounded-full outline-none border-neutral-300"
                     onClick={closeModal}
-                    className="w-8 h-8 mb-4 stroke-neutral-800"
-                  />
+                  >
+                    <ChevronLeftIcon className="w-7 h-7 -ml-[1px] mr-[1px] stroke-neutral-800" />
+                  </button>
                   <div className="flex items-center mb-6">
                     <div className="h-[50px] w-[50px] rounded-full relative overflow-hidden mr-4">
                       {session && (

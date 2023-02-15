@@ -9,6 +9,7 @@ import BotMessage from "./BotMessage";
 import UserMessage from "./UserMessage";
 import ReactMarkdown from "react-markdown";
 import MarkdownBlock from "./MarkdownBlock";
+import MobileHeader from "./MobileHeader";
 
 type Props = {
   chatId: string;
@@ -34,7 +35,7 @@ const Chat = ({ chatId, apiResponse }: Props) => {
   );
 
   return (
-    <div className="flex flex-col items-start flex-1 p-6 space-y-8 overflow-x-hidden overflow-y-auto">
+    <div className="flex flex-col items-start flex-1 p-6 pt-20 space-y-8 overflow-x-hidden overflow-y-auto md:pt-6">
       {messages?.empty && (
         <>
           <p className="self-center mt-12 font-mono text-lg font-semibold text-center text-neutral-600">

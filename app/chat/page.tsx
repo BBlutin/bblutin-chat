@@ -5,7 +5,9 @@ import MobileHeader from "../../components/MobileHeader";
 const ChatPage = () => {
   return (
     <div className="flex flex-col items-center h-full md:justify-center text-neutral-800">
-      <MobileHeader />
+      <div className="mb-20">
+        <MobileHeader />
+      </div>
       <Image
         src="/images/bot.svg"
         className="justify-self-center"
