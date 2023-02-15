@@ -29,14 +29,14 @@ const HomePage = () => {
   return (
     <div className="container relative flex flex-col items-center justify-center h-screen mx-auto text-neutral-800 ">
       <Image src="/images/illustration.svg" alt="" width={400} height={400} />
-      <h2 className="px-4 mt-16 text-xl font-semibold text-neutral-500 md:px-0">
+      <h2 className="px-4 mt-5 text-xl font-semibold lg:mt-16 text-neutral-500 md:px-0">
         Content de vous revoir
       </h2>
-      <h1 className="px-4 mt-2 mb-10 font-mono text-2xl font-semibold text-center md:text-3xl lg:text-4xl lg:mb-16 md:px-0">
+      <h1 className="px-4 mt-2 font-mono text-2xl font-semibold text-center mb-28 lg:mb-10 md:text-3xl lg:text-4xl lg:mb-16 md:px-0">
         Que puis-je faire pour vous aujourd’hui ?
       </h1>
       <Hello />
-      <div className="absolute w-full bottom-6 lg:bottom-12 lg:px-[30%] left-0 p-4 px-12 flex items-center justify-between">
+      <div className="absolute w-full bottom-2 lg:bottom-12 lg:px-[30%] left-0 p-4 px-12 flex items-center justify-between">
         <SignOut />
         <button
           onClick={createNewChat}

@@ -22,7 +22,7 @@ const NewChat = () => {
   return (
     <button
       onClick={createNewChat}
-      className="flex items-center justify-center w-full px-4 py-3 transition-all ease-in-out border border-stone-300 rounded-xl hover:bg-lime-500 hover:border-lime-500 group"
+      className="flex items-center justify-center w-full px-4 py-3 transition-all ease-in-out border border-stone-300 focus:text-neutral-800 rounded-xl md:hover:bg-lime-500 md:hover:border-lime-500 md:hover:text-neutral-50 group"
     >
       <PlusIcon className="w-4 h-4 mr-1 stroke-neutral-800 group-hover:stroke-neutral-50" />
       <p className="text-sm font-bold text-neutral-800 group-hover:text-neutral-50">

@@ -38,9 +38,19 @@ const MarkdownBlock = ({ content }: { content: string }) => {
           PreTag="div"
           className="codeStyle"
           showLineNumbers={true}
+          showInlineLineNumbers={true}
           wrapLines={true}
+          customStyle={{
+            margin: 0,
+            wordBreak: "break-all",
+            whiteSpace: "pre-wrap",
+            boxShadow: "0px 2px 4px rgba(50,50,93,.1)",
+          }}
           useInlineStyles={true}
-          lineProps={applyHighlights}
+          lineProps={
+            (applyHighlights,
+            { style: { wordBreak: "break-all", whiteSpace: "pre-wrap" } })
+          }
           {...props}
         />
       ) : (

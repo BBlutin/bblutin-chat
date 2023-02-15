@@ -160,7 +160,7 @@ const ChatInput = ({ chatId, setApiResponse }: Props) => {
 
   return (
     <div className="text-sm border-t rounded-b-3xl border-neutral-200 text-neutral-700">
-      <form onSubmit={sendMessage} className="flex p-6 space-x-5">
+      <form onSubmit={sendMessage} className="flex px-6 py-2 space-x-5 md:p-6">
         <input
           value={prompt}
           disabled={!session}
@@ -172,9 +172,9 @@ const ChatInput = ({ chatId, setApiResponse }: Props) => {
         <button
           disabled={!session || !prompt}
           type="submit"
-          className="flex items-center justify-center w-12 h-12 transition-all duration-500 ease-in-out rounded-full bg-lime-500 disabled:opacity-50 hover:rotate-45"
+          className="flex items-center justify-center w-10 h-10 transition-all duration-500 ease-in-out rounded-full md:w-12 md:h-12 bg-lime-500 disabled:opacity-50 hover:rotate-45"
         >
-          <PaperAirplaneIcon className="w-6 h-6 -mt-[1px]  -rotate-45 stroke-neutral-50" />
+          <PaperAirplaneIcon className="w-6 h-6 -mt-[2px] md:-mt-[1px]  -rotate-45 stroke-neutral-50" />
         </button>
       </form>
     </div>

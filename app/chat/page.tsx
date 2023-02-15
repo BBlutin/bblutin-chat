@@ -1,10 +1,18 @@
 import React from "react";
 import Image from "next/image";
+import MobileHeader from "../../components/MobileHeader";
 
 const ChatPage = () => {
   return (
-    <div className="flex flex-col items-center h-full justify-center px-2 text-neutral-800">
-      <Image src="/images/bot.svg" alt="BBChat" width={400} height={400} />
+    <div className="flex flex-col items-center h-full md:justify-center text-neutral-800">
+      <MobileHeader />
+      <Image
+        src="/images/bot.svg"
+        className="justify-self-center"
+        alt="BBChat"
+        width={400}
+        height={400}
+      />
     </div>
   );
 };
