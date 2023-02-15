@@ -41,9 +41,11 @@ const SideBar = () => {
               />
             )}
           </div>
-          <h1 className="font-mono text-2xl font-semibold text-neutral-800">
-            BB.Chat
-          </h1>
+          <Link href="/">
+            <h1 className="font-mono text-2xl font-semibold text-neutral-800">
+              BB.Chat
+            </h1>
+          </Link>
         </div>
         <div className="flex-1">
           <div className="mt-6 lg:mt-8">
