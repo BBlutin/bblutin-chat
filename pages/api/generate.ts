@@ -24,7 +24,7 @@ const handler = async (req: NextRequest): Promise<Response> => {
     prompt: initialPrompt,
     temperature: 0.4,
     top_p: 1,
-    max_tokens: 300,
+    max_tokens: 500,
     frequency_penalty: 0,
     presence_penalty: 0,
     stream: true,
