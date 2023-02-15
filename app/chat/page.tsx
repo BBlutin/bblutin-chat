@@ -20,7 +20,7 @@ const ChatPage = () => {
         <ExclamationTriangleIcon className="flex-shrink-0 mt-1 mr-3 w-9 h-9 stroke-neutral-400" />
         <p>
           L'application est en Beta. Vous pourrez donc rencontrez certains bugs.
-          Merci de me le remonter en MP sur Twitter si vous en avez le temps 😊
+          Merci de me les remonter en MP sur Twitter si vous en avez le temps 😊
         </p>
       </div>
     </div>
