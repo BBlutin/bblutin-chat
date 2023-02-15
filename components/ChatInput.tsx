@@ -8,19 +8,23 @@ import {
   getDocs,
   query,
   orderBy,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { db } from "../firebase";
 import toast from "react-hot-toast";
 
 type Props = {
   chatId: string;
+  setApiResponse: Dispatch<SetStateAction<string>>;
 };
 
-const ChatInput = ({ chatId }: Props) => {
+const ChatInput = ({ chatId, setApiResponse }: Props) => {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
+  let generatedResponse = "";
 
   const model = "text-davinci-001";
 
@@ -29,6 +33,8 @@ const ChatInput = ({ chatId }: Props) => {
     if (!prompt) return;
     const input = prompt.trim();
     setPrompt("");
+    generatedResponse = "";
+    setApiResponse(generatedResponse);
 
     const context = await getDocs(
       query(
@@ -86,25 +92,70 @@ const ChatInput = ({ chatId }: Props) => {
       },
     });
 
-    await fetch(`${process.env.NEXT_PUBLIC_URL}/api/askQuestion`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: promptPrefix + input,
-        chatId,
-        model,
-        session,
-      }),
-    }).then(() => {
-      toast.success("BB.Chat vous a répondu !", {
-        id: notification,
-        iconTheme: {
-          primary: "#84cc16",
-          secondary: "#fafafa",
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/generate`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      });
+        body: JSON.stringify({
+          prompt: promptPrefix + input,
+          chatId,
+          model,
+          session,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const data = response.body;
+    if (!data) {
+      return;
+    }
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      generatedResponse += chunkValue;
+      setApiResponse(generatedResponse);
+    }
+
+    const botMessage: Message = {
+      text: generatedResponse,
+      createdAt: serverTimestamp(),
+      user: {
+        _id: "BB.Chat",
+        name: "BB.Chat",
+        avatar: "",
+      },
+    };
+
+    const docRef = await addDoc(
+      collection(
+        db,
+        "users",
+        session?.user?.email!,
+        "chats",
+        chatId,
+        "messages"
+      ),
+      botMessage
+    );
+
+    toast.success("BB.Chat vous a répondu !", {
+      id: notification,
+      iconTheme: {
+        primary: "#84cc16",
+        secondary: "#fafafa",
+      },
     });
   };
 
@@ -122,7 +173,7 @@ const ChatInput = ({ chatId }: Props) => {
         <button
           disabled={!session || !prompt}
           type="submit"
-          className="flex items-center justify-center h-12 w-12 rounded-full bg-lime-500 disabled:opacity-50 hover:rotate-45 transition-all ease-in-out duration-500"
+          className="flex items-center justify-center w-12 h-12 transition-all duration-500 ease-in-out rounded-full bg-lime-500 disabled:opacity-50 hover:rotate-45"
         >
           <PaperAirplaneIcon className="w-6 h-6 -mt-[1px]  -rotate-45 stroke-neutral-50" />
         </button>

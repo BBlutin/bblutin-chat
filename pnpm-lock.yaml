@@ -7,6 +7,7 @@ specifiers:
   '@types/react-dom': 18.0.6
   autoprefixer: ^10.4.12
   csstype: ^3.1.1
+  eventsource-parser: ^0.1.0
   firebase: ^9.17.1
   firebase-admin: ^11.5.0
   next: latest
@@ -23,6 +24,7 @@ specifiers:
 dependencies:
   '@heroicons/react': 2.0.15_react@18.2.0
   csstype: 3.1.1
+  eventsource-parser: 0.1.0
   firebase: 9.17.1
   firebase-admin: 11.5.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -1419,6 +1421,11 @@ packages:
     engines: {node: '>=6'}
     dev: false
     optional: true
+
+  /eventsource-parser/0.1.0:
+    resolution: {integrity: sha512-M9QjFtEIkwytUarnx113HGmgtk52LSn3jNAtnWKi3V+b9rqSfQeVdLsaD5AG/O4IrGQwmAAHBIsqbmURPTd2rA==}
+    engines: {node: '>=14.18'}
+    dev: false
 
   /extend/3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}

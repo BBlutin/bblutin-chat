@@ -10,9 +10,10 @@ import UserMessage from "./UserMessage";
 
 type Props = {
   chatId: string;
+  apiResponse: string;
 };
 
-const Chat = ({ chatId }: Props) => {
+const Chat = ({ chatId, apiResponse }: Props) => {
   const { data: session } = useSession();
 
   const [messages] = useCollection(
@@ -31,13 +32,13 @@ const Chat = ({ chatId }: Props) => {
   );
 
   return (
-    <div className="flex-1 flex flex-col items-start p-6 space-y-8 overflow-y-auto">
+    <div className="flex flex-col items-start flex-1 p-6 space-y-8 overflow-y-auto">
       {messages?.empty && (
         <>
-          <p className="mt-12 font-mono font-semibold text-lg text-center self-center text-neutral-600">
+          <p className="self-center mt-12 font-mono text-lg font-semibold text-center text-neutral-600">
             Saisissez quelque chose ci-dessous pour commencer à utiliser BB.Chat
           </p>
-          <ArrowDownCircleIcon className="h-10 w-10 mx-auto mt-5 stroke-lime-500 animate-bounce" />
+          <ArrowDownCircleIcon className="w-10 h-10 mx-auto mt-5 stroke-lime-500 animate-bounce" />
         </>
       )}
       {messages?.docs.map((message) => (
@@ -49,6 +50,12 @@ const Chat = ({ chatId }: Props) => {
           )}
         </>
       ))}
+      {messages?.docs[messages?.docs.length - 1].data().user._id !=
+        "BB.Chat" && (
+        <div className="text-sm font-medium text-neutral-800">
+          <p>{apiResponse}</p>
+        </div>
+      )}
     </div>
   );
 };
