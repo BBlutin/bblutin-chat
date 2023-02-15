@@ -2,7 +2,10 @@
 
 import React from "react";
 import Image from "next/image";
-import { PlusIcon, QueueListIcon } from "@heroicons/react/24/outline";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  QueueListIcon,
+} from "@heroicons/react/24/outline";
 import SignOut from "../components/SignOut";
 import Hello from "../components/Hello";
 import Link from "next/link";
@@ -42,7 +45,7 @@ const HomePage = () => {
           onClick={createNewChat}
           className="p-2 border-2 rounded-2xl border-neutral-300 animate-bounce"
         >
-          <PlusIcon className="w-10 h-10" />
+          <ChatBubbleBottomCenterTextIcon className="w-10 h-10 stroke-lime-500" />
         </button>
         <Link href="/chat">
           <QueueListIcon className="w-6 h-6 lg:h-8 lg:w-8 stroke-neutral-400" />
