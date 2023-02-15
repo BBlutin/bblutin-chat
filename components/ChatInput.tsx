@@ -51,7 +51,7 @@ const ChatInput = ({ chatId, setApiResponse }: Props) => {
     let promptPrefix = "";
 
     context.docs.forEach((prefix) => {
-      promptPrefix += `${prefix.data().text}\n`;
+      promptPrefix += `\n\n${prefix.data().user.name}: ${prefix.data().text}`;
     });
 
     const message: Message = {
@@ -98,7 +98,8 @@ const ChatInput = ({ chatId, setApiResponse }: Props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          prompt: promptPrefix + input,
+          prompt: input,
+          promptPrefix,
           chatId,
           model,
           session,

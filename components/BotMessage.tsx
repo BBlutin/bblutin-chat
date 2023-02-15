@@ -1,4 +1,6 @@
 import { DocumentData } from "firebase/firestore";
+import ReactMarkdown from "react-markdown";
+import MarkdownBlock from "./MarkdownBlock";
 
 type Props = {
   message: DocumentData;
@@ -6,8 +8,8 @@ type Props = {
 
 const BotMessage = ({ message }: Props) => {
   return (
-    <div className="font-medium text-neutral-800 text-sm">
-      <p>{message.text}</p>
+    <div className="text-sm font-medium text-neutral-800 response">
+      <MarkdownBlock content={message.text} />
     </div>
   );
 };

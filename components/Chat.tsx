@@ -7,6 +7,8 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../firebase";
 import BotMessage from "./BotMessage";
 import UserMessage from "./UserMessage";
+import ReactMarkdown from "react-markdown";
+import MarkdownBlock from "./MarkdownBlock";
 
 type Props = {
   chatId: string;
@@ -32,7 +34,7 @@ const Chat = ({ chatId, apiResponse }: Props) => {
   );
 
   return (
-    <div className="flex flex-col items-start flex-1 p-6 space-y-8 overflow-y-auto">
+    <div className="flex flex-col items-start flex-1 p-6 space-y-8 overflow-x-hidden overflow-y-auto">
       {messages?.empty && (
         <>
           <p className="self-center mt-12 font-mono text-lg font-semibold text-center text-neutral-600">
@@ -52,8 +54,8 @@ const Chat = ({ chatId, apiResponse }: Props) => {
       ))}
       {messages?.docs[messages?.docs.length - 1]?.data().user._id !=
         "BB.Chat" && (
-        <div className="text-sm font-medium text-neutral-800">
-          <p>{apiResponse}</p>
+        <div className="flex-wrap text-sm font-medium text-neutral-800 response">
+          <MarkdownBlock content={apiResponse} />
         </div>
       )}
     </div>
