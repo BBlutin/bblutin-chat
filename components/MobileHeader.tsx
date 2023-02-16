@@ -87,9 +87,11 @@ const MobileHeader = () => {
                         />
                       )}
                     </div>
-                    <h1 className="font-mono text-2xl font-semibold text-neutral-800">
-                      BB.Chat
-                    </h1>
+                    <Link href="/">
+                      <h1 className="font-mono text-2xl font-semibold text-neutral-800">
+                        BB.Chat
+                      </h1>
+                    </Link>
                   </div>
                   <NewChat />
                   <h2 className="mt-4 font-semibold text-neutral-500 lg:mt-8">
