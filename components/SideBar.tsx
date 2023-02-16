@@ -16,6 +16,8 @@ import ChatRow from "./ChatRow";
 
 const SideBar = () => {
   const { data: session } = useSession();
+
+  console.log(session);
   const [chats, loading, error] = useCollection(
     session &&
       query(
